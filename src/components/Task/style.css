@@ -1,0 +1,48 @@
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 0 10px;
+  margin: 8px;
+  box-shadow: 0px 1px 2px 0px #33333330;
+  height: 48px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #525252;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+#action-container {
+  width: 75px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  border: 0;
+  background: none;
+  color: #666666;
+}
+
+button#button-check:hover {
+  cursor: pointer;
+  color: #2cc737;
+  transition: color 0.3s ease;
+}
+
+button#button-edit:hover {
+  cursor: pointer;
+  color: #b7d528;
+  transition: color 0.3s ease;
+}
+
+button#button-remove:hover {
+  cursor: pointer;
+  color: #ff2f34;
+  transition: color 0.3s ease;
+}
