@@ -7,20 +7,25 @@
 
 html,
 body,
-#root {
+#root,
+#main-container {
   height: 100%;
+  width: 100%;
   background: #b349cd;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   font-family: "Nunito", sans-serif;
 }
 
 #task-container {
   width: 600px;
+  max-height: 90vh;
   background: #dfdfdf;
   border-radius: 10px 10px 0 0;
-  display: inline-block;
+  display: block;
+  overflow: auto;
 }
 
 #button-container {
@@ -44,4 +49,16 @@ body,
   cursor: pointer;
   background: #33333340;
   transition: 0.5s ease;
+}
+
+#alert-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  margin: 8px;
+  height: 48px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #525252;
 }

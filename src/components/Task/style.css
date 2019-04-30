@@ -1,4 +1,4 @@
-.task {
+.task-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,17 +13,27 @@
   color: #525252;
 }
 
-input[type="checkbox"] {
-  transform: scale(1.2);
+#info-container {
+  display: flex;
+}
+
+.task-info {
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+}
+
+.task-info span {
+  margin: 0 0 0 5px;
 }
 
 #action-container {
-  width: 75px;
   display: flex;
   justify-content: space-between;
 }
 
 button {
+  margin: 0 5px;
   border: 0;
   background: none;
   color: #666666;

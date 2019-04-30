@@ -1,14 +1,27 @@
 import React, { Component } from "react";
-import { FiCheckSquare, FiEdit2, FiTrash2 } from "react-icons/fi";
+import {
+  FiClock,
+  FiClipboard,
+  FiCheckSquare,
+  FiEdit2,
+  FiTrash2
+} from "react-icons/fi";
 
 import "./style.css";
 
 export default class Task extends Component {
   render() {
     return (
-      <div className="task">
-        <div>
-          <p>Tarefa</p>
+      <div className="task-wrapper">
+        <div id="info-container">
+          <div className="task-info">
+            <FiClock size="13px" />
+            <span>{this.props.info.hour}</span>
+          </div>
+          <div className="task-info">
+            <FiClipboard size="13px" />
+            <span>{this.props.info.task}</span>
+          </div>
         </div>
         <div id="action-container">
           <button id="button-check">
