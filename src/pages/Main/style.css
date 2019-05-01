@@ -43,6 +43,7 @@ body,
   margin: 8px;
   transition: 0.5s ease;
   box-shadow: 0px 1px 2px 0px #33333330;
+  border: 0;
 }
 
 #button-container button:hover {

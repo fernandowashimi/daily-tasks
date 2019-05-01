@@ -32,27 +32,62 @@
   justify-content: space-between;
 }
 
-button {
+#action-container button {
   margin: 0 5px;
   border: 0;
   background: none;
-  color: #666666;
+  height: 30px;
+  width: 30px;
+  line-height: 0;
+  border-radius: 50%;
 }
 
-button#button-check:hover {
+#action-container div button:hover {
   cursor: pointer;
+  color: #ffffff;
+}
+
+#button-check {
   color: #2cc737;
-  transition: color 0.3s ease;
 }
 
-button#button-edit:hover {
-  cursor: pointer;
+#button-edit {
   color: #b7d528;
-  transition: color 0.3s ease;
 }
 
-button#button-remove:hover {
-  cursor: pointer;
+#button-remove {
   color: #ff2f34;
-  transition: color 0.3s ease;
+}
+
+#button-check:hover {
+  background: #2cc737;
+  transition: 0.3s ease;
+}
+
+#button-edit:hover {
+  background: #b7d528;
+  transition: 0.3s ease;
+}
+
+#button-remove:hover {
+  background: #ff2f34;
+  transition: 0.3s ease;
+}
+
+#button-confirm {
+  color: #2cc737;
+}
+
+#button-abort {
+  color: #ff2f34;
+}
+
+#button-confirm:hover {
+  background: #2cc737;
+  transition: 0.3s ease;
+}
+
+#button-abort:hover {
+  background: #ff2f34;
+  transition: 0.3s ease;
 }

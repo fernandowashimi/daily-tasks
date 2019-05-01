@@ -4,12 +4,31 @@ import {
   FiClipboard,
   FiCheckSquare,
   FiEdit2,
-  FiTrash2
+  FiTrash2,
+  FiCheck,
+  FiX
 } from "react-icons/fi";
 
 import "./style.css";
 
 export default class Task extends Component {
+  state = {
+    isShowingDialog: false
+  };
+
+  openDialogHandler = () => {
+    this.setState({ isShowingDialog: true });
+  };
+
+  closeDialogHandler = () => {
+    this.setState({ isShowingDialog: false });
+  };
+
+  removeTask = index => {
+    this.props.remove(index);
+    this.setState({ isShowingDialog: false });
+  };
+
   render() {
     return (
       <div className="task-wrapper">
@@ -24,15 +43,42 @@ export default class Task extends Component {
           </div>
         </div>
         <div id="action-container">
-          <button id="button-check">
-            <FiCheckSquare size="20px" />
-          </button>
-          <button id="button-edit">
-            <FiEdit2 size="20px" />
-          </button>
-          <button id="button-remove">
-            <FiTrash2 size="20px" />
-          </button>
+          {this.state.isShowingDialog ? (
+            <div>
+              <button
+                title="Confirmar"
+                className="button-dialog"
+                id="button-confirm"
+                onClick={() => this.removeTask(this.props.info.index)}
+              >
+                <FiCheck size="20px" />
+              </button>
+              <button
+                title="Cancelar"
+                className="button-dialog"
+                id="button-abort"
+                onClick={this.closeDialogHandler}
+              >
+                <FiX size="20px" />
+              </button>
+            </div>
+          ) : (
+            <div>
+              <button title="Concluir" id="button-check">
+                <FiCheckSquare size="20px" />
+              </button>
+              <button title="Editar" id="button-edit">
+                <FiEdit2 size="20px" />
+              </button>
+              <button
+                title="Remover"
+                id="button-remove"
+                onClick={this.openDialogHandler}
+              >
+                <FiTrash2 size="20px" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );

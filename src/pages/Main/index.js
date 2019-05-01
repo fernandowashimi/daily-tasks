@@ -9,7 +9,7 @@ export default class Main extends Component {
     super();
     this.state = {
       isShowing: false,
-      taskList: []
+      taskList: [{ task: "TEste", hour: "12:30" }]
     };
   }
 
@@ -30,6 +30,12 @@ export default class Main extends Component {
   addTask = (hour, task) => {
     let list = this.state.taskList;
     list.push({ hour, task });
+    this.setState({ taskList: list });
+  };
+
+  removeTask = index => {
+    let list = this.state.taskList;
+    list.splice(index, 1);
     this.setState({ taskList: list });
   };
 
@@ -56,7 +62,11 @@ export default class Main extends Component {
           ) : (
             this.state.taskList.map((item, key) => {
               return (
-                <Task key={key} info={{ hour: item.hour, task: item.task }} />
+                <Task
+                  key={key}
+                  info={{ hour: item.hour, task: item.task, index: key }}
+                  remove={this.removeTask}
+                />
               );
             })
           )}

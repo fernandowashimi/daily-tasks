@@ -59,6 +59,7 @@ export default class Modal extends Component {
                 <FiClipboard className="icon" />
                 <input
                   type="text"
+                  maxlength="30"
                   required
                   value={this.state.task}
                   onChange={this.handleTaskChange}
