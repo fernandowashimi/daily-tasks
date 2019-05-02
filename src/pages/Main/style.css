@@ -21,11 +21,21 @@ body,
 
 #task-container {
   width: 600px;
-  max-height: 90vh;
+  max-height: 45vh;
   background: #dfdfdf;
   border-radius: 10px 10px 0 0;
   display: block;
   overflow: auto;
+}
+
+#completed-task-container {
+  width: 600px;
+  max-height: 45vh;
+  background: #dfdfdf;
+  border-radius: 10px;
+  display: block;
+  overflow: auto;
+  margin: 10px 0;
 }
 
 #button-container {

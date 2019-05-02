@@ -15,7 +15,7 @@ export default class Modal extends Component {
 
   createTask = e => {
     e.preventDefault();
-    this.props.create(this.state.time, this.state.task);
+    this.props.create({ hour: this.state.time, task: this.state.task });
     this.props.sort();
     this.setState({ time: "", task: "" });
     this.props.close();

@@ -55,7 +55,8 @@
   color: #b7d528;
 }
 
-#button-remove {
+#button-remove,
+#button-undone {
   color: #ff2f34;
 }
 
@@ -69,7 +70,9 @@
   transition: 0.3s ease;
 }
 
-#button-remove:hover {
+#button-remove:hover,
+#button-undone:hover,
+#button-abort:hover {
   background: #ff2f34;
   transition: 0.3s ease;
 }
@@ -87,7 +90,6 @@
   transition: 0.3s ease;
 }
 
-#button-abort:hover {
-  background: #ff2f34;
-  transition: 0.3s ease;
+.completed {
+  background: #99999960;
 }

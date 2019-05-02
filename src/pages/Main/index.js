@@ -7,7 +7,8 @@ import "./style.css";
 export default class Main extends Component {
   state = {
     isShowing: false,
-    taskList: []
+    taskList: [],
+    completedTaskList: []
   };
 
   componentDidMount = () => {
@@ -21,12 +22,21 @@ export default class Main extends Component {
       const y = parseInt(b.hour.replace(":", ""));
       return x - y;
     });
+
+    let completedList = this.state.completedTaskList;
+    completedList.sort(function(a, b) {
+      const x = parseInt(a.hour.replace(":", ""));
+      const y = parseInt(b.hour.replace(":", ""));
+      return x - y;
+    });
+
     this.setState({ taskList: list });
+    this.setState({ completedTaskList: completedList });
   };
 
-  addTask = (hour, task) => {
+  addTask = task => {
     let list = this.state.taskList;
-    list.push({ hour, task });
+    list.push(task);
     this.setState({ taskList: list });
   };
 
@@ -40,6 +50,24 @@ export default class Main extends Component {
     let list = this.state.taskList;
     list[index] = { hour, task };
     this.setState({ taskList: list });
+  };
+
+  completeTask = index => {
+    let task = this.state.taskList[index];
+    this.removeTask(index);
+    let completedTaskList = this.state.completedTaskList;
+    completedTaskList.push(task);
+    this.setState({ completedTaskList });
+    this.sortTasks();
+  };
+
+  uncompleteTask = index => {
+    let task = this.state.completedTaskList[index];
+    let completedTaskList = this.state.completedTaskList;
+    completedTaskList.splice(index, 1);
+    this.setState({ completedTaskList });
+    this.addTask(task);
+    this.sortTasks();
   };
 
   openModalHandler = (type, index) => {
@@ -72,15 +100,32 @@ export default class Main extends Component {
                   info={{ hour: item.hour, task: item.task, index: key }}
                   remove={this.removeTask}
                   open={() => this.openModalHandler("edit", key)}
+                  complete={this.completeTask}
                 />
               );
             })
           )}
         </div>
         <div id="button-container">
-          <button onClick={() => this.openModalHandler("create")}>
+          <button
+            title="Criar nova tarefa"
+            onClick={() => this.openModalHandler("create")}
+          >
             <FiPlus size="20px" />
           </button>
+        </div>
+
+        <div id="completed-task-container">
+          {this.state.completedTaskList.map((item, key) => {
+            return (
+              <Task
+                key={key}
+                info={{ hour: item.hour, task: item.task, index: key }}
+                uncomplete={this.uncompleteTask}
+                completed={true}
+              />
+            );
+          })}
         </div>
 
         {this.state.isShowing ? <div id="modal-background" /> : null}

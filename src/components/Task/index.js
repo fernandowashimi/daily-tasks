@@ -6,7 +6,8 @@ import {
   FiEdit2,
   FiTrash2,
   FiCheck,
-  FiX
+  FiX,
+  FiXSquare
 } from "react-icons/fi";
 
 import "./style.css";
@@ -31,8 +32,12 @@ export default class Task extends Component {
 
   render() {
     return (
-      <div className="task-wrapper">
-        <div id="info-container">
+      <div
+        className={
+          this.props.completed ? "task-wrapper completed" : "task-wrapper"
+        }
+      >
+        <div id={"info-container"}>
           <div className="task-info">
             <FiClock size="13px" />
             <span>{this.props.info.hour}</span>
@@ -43,7 +48,17 @@ export default class Task extends Component {
           </div>
         </div>
         <div id="action-container">
-          {this.state.isShowingDialog ? (
+          {this.props.completed ? (
+            <div>
+              <button
+                title="Tornar incompleto"
+                id="button-undone"
+                onClick={() => this.props.uncomplete(this.props.info.index)}
+              >
+                <FiXSquare size="20px" />
+              </button>
+            </div>
+          ) : this.state.isShowingDialog ? (
             <div>
               <button
                 title="Confirmar"
@@ -64,7 +79,11 @@ export default class Task extends Component {
             </div>
           ) : (
             <div>
-              <button title="Concluir" id="button-check">
+              <button
+                title="Concluir"
+                id="button-check"
+                onClick={() => this.props.complete(this.props.info.index)}
+              >
                 <FiCheckSquare size="20px" />
               </button>
               <button title="Editar" id="button-edit" onClick={this.props.open}>
