@@ -12,7 +12,18 @@ export default class Main extends Component {
   };
 
   componentDidMount = () => {
-    this.sortTasks();
+    this.setState({
+      taskList: JSON.parse(localStorage.getItem("taskList")),
+      completedTaskList: JSON.parse(localStorage.getItem("completedTaskList"))
+    });
+  };
+
+  componentDidUpdate = () => {
+    localStorage.setItem("taskList", JSON.stringify(this.state.taskList));
+    localStorage.setItem(
+      "completedTaskList",
+      JSON.stringify(this.state.completedTaskList)
+    );
   };
 
   sortTasks = () => {
