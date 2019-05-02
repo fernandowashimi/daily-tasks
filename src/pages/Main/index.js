@@ -5,13 +5,10 @@ import { FiPlus } from "react-icons/fi";
 import "./style.css";
 
 export default class Main extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isShowing: false,
-      taskList: [{ task: "TEste", hour: "12:30" }]
-    };
-  }
+  state = {
+    isShowing: false,
+    taskList: []
+  };
 
   componentDidMount = () => {
     this.sortTasks();
@@ -39,9 +36,17 @@ export default class Main extends Component {
     this.setState({ taskList: list });
   };
 
-  openModalHandler = () => {
+  editTask = (index, hour, task) => {
+    let list = this.state.taskList;
+    list[index] = { hour, task };
+    this.setState({ taskList: list });
+  };
+
+  openModalHandler = (type, index) => {
     this.setState({
-      isShowing: true
+      isShowing: true,
+      modalType: type,
+      taskIndex: index
     });
   };
 
@@ -66,13 +71,14 @@ export default class Main extends Component {
                   key={key}
                   info={{ hour: item.hour, task: item.task, index: key }}
                   remove={this.removeTask}
+                  open={() => this.openModalHandler("edit", key)}
                 />
               );
             })
           )}
         </div>
         <div id="button-container">
-          <button onClick={this.openModalHandler}>
+          <button onClick={() => this.openModalHandler("create")}>
             <FiPlus size="20px" />
           </button>
         </div>
@@ -82,7 +88,10 @@ export default class Main extends Component {
           show={this.state.isShowing}
           close={this.closeModalHandler}
           create={this.addTask}
+          edit={this.editTask}
           sort={this.sortTasks}
+          type={this.state.modalType}
+          index={this.state.taskIndex}
         />
       </div>
     );

@@ -67,7 +67,7 @@ export default class Task extends Component {
               <button title="Concluir" id="button-check">
                 <FiCheckSquare size="20px" />
               </button>
-              <button title="Editar" id="button-edit">
+              <button title="Editar" id="button-edit" onClick={this.props.open}>
                 <FiEdit2 size="20px" />
               </button>
               <button

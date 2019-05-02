@@ -15,9 +15,15 @@ export default class Modal extends Component {
 
   createTask = e => {
     e.preventDefault();
-    console.log(this.state.time, this.state.task);
     this.props.create(this.state.time, this.state.task);
     this.props.sort();
+    this.setState({ time: "", task: "" });
+    this.props.close();
+  };
+
+  editTask = e => {
+    e.preventDefault();
+    this.props.edit(this.props.index, this.state.time, this.state.task);
     this.setState({ time: "", task: "" });
     this.props.close();
   };
@@ -40,12 +46,20 @@ export default class Modal extends Component {
         }}
       >
         <div id="modal-header">
-          <h1>Adicionar nova tarefa</h1>
+          <h1>
+            {this.props.type === "create"
+              ? "Adicionar nova tarefa"
+              : "Editar tarefa"}
+          </h1>
           <hr />
         </div>
         <div id="modal-body">
           <div id="input-container">
-            <form onSubmit={this.createTask}>
+            <form
+              onSubmit={
+                this.props.type === "create" ? this.createTask : this.editTask
+              }
+            >
               <div className="input-wrapper">
                 <FiClock className="icon" />
                 <input
@@ -59,7 +73,7 @@ export default class Modal extends Component {
                 <FiClipboard className="icon" />
                 <input
                   type="text"
-                  maxlength="30"
+                  maxLength="30"
                   required
                   value={this.state.task}
                   onChange={this.handleTaskChange}
@@ -73,7 +87,7 @@ export default class Modal extends Component {
                 Cancelar
               </button>
               <button type="submit" id="button-create">
-                Criar
+                {this.props.type === "create" ? "Criar" : "Editar"}
               </button>
             </form>
           </div>
